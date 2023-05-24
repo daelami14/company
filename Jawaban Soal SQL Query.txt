@@ -1,0 +1,36 @@
+1.1. CREATE TABLE company_1(
+		company_code_1 varchar(255) NOT NULL,
+		company_name varchar(255),
+		PRIMARY KEY(company_code_1)
+	);
+
+1.2. CREATE TABLE company_2(
+		company_code_2 varchar(255) NOT NULL,
+		company_code_1 varchar(255),
+		company_name varchar(255),
+		CONSTRAINT fk_company_code_1
+		PRIMARY KEY (company_code_2)
+	);
+
+2.1. INSERT INTO company_1(company_code_1,company_name) values ('SP','SAIPEM');
+     INSERT INTO company_1(company_code_1,company_name) values ('JV','CCS JV');
+
+2.2 INSERT INTO company_2(company_code_2,company_code_1,company_name) values ('SPA','SP','SAIPEM MILAN');
+    INSERT INTO company_2(company_code_2,company_code_1,company_name) values ('PTSI','SP','SAIPEM INDONESIA');
+    INSERT INTO company_2(company_code_2,company_code_1,company_name) values ('JVA','JV','CCS JV ASIA');
+    INSERT INTO company_2(company_code_2,company_code_1,company_name) values ('JVM','JV','CCS JV MILAN');
+
+3.  CREATE VIEW v_company AS (
+	SELECT a.company_code_1, a.company_name as company_name_1, b.company_code_2, b.company_name as company_name_2       
+    	FROM company_1 A INNER JOIN company_2 b ON a.company_code_1 = b.company_code_1
+    );
+
+4. SELECT * FROM `v_company` WHERE company_code_1 ='SP' ORDER BY company_code_2 DESC;
+
+
+5. Function adalah sebuah fungsi yang telah disediakan oleh database sehingga kita tidak bisa merubah isi function 
+   dan menghasilkan output / return nilai
+
+   Store Procedure adalah kumpulan perintah yang di simpan dan di eksekusi di server database , didalam store procedure kita dapat membuat   
+   program dengan sintaks, dan menghasilkan output / return yang kita buat sendiri
+	
