@@ -18,3 +18,8 @@ use App\Http\Controllers\CompController;
 //});
 
 Route::get('/',[CompController::class,'index']);
+Route::get('company/tambah',[CompController::class,'tambah']);
+Route::post('company/store',[CompController::class,'store']);
+Route::get('company/edit/{id}',[CompController::class,'edit']);
+Route::post('company/update',[CompController::class,'update']);
+Route::get('company/hapus/{id}',[CompController::class,'hapus']);
